@@ -1,0 +1,30 @@
+!Switch
+
+[mu_d]: !Include mud_familyB.yaml
+
+[mu_s]: !EvalModel
+    parameters: [T_n, Tau0, DeltaS]
+    model: !Switch
+        [T_n]: !Include common2all.yaml
+        [Tau0]: !Include Tau0_familyB.yaml
+        [DeltaS]: !FunctionMap
+           map:
+             DeltaS: | 
+                r = sqrt(pow(x+4213.92719564, 2.0) + pow(y+9158.0236976,2.0)+ pow(z+9820.77805897, 2.0));
+                r_crit = 80000.0;
+                return ((6-0.1)*r/r_crit + 0.1)*1000000;
+    components: !FunctionMap
+       map:
+          mu_s: return min(10, -(Tau0 + DeltaS)/T_n);
+
+[T_s, T_d]: !EvalModel
+    parameters: [Tau0, rake]
+    model: !Switch
+        [Tau0]: !Include Tau0_familyB.yaml
+        [rake]: !Include rake.yaml
+    components: !FunctionMap
+       map:
+          T_s: return cos(rake) * Tau0;
+          T_d: return sin(rake) * Tau0;
+
+[T_n, forced_rupture_time, cohesion, d_c]: !Include common2all.yaml

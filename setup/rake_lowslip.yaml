@@ -1,0 +1,14 @@
+!Switch
+[rake_lowslip]: !Any
+  components:
+    - !GroupFilter
+      groups: 155
+      components: !ConstantMap
+          map: 
+            rake_lowslip: -90
+    - !GroupFilter
+      groups: 210
+      components: !ConstantMap
+          map: 
+            #-170 and not -10 because of seissol convention on positive strike
+            rake_lowslip: -170

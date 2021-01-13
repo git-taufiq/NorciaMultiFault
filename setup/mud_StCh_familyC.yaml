@@ -1,0 +1,10 @@
+!Switch
+[mu_d]: !EvalModel
+    parameters: [T_n, Tau0, Ts0, Td0]
+    model: !Switch
+        [T_n]: !Include common2all.yaml
+        [Tau0]: !Include Tau0_familyC.yaml
+        [Ts0, Td0]: !Include Ts0Td0_fullA.yaml
+    components: !FunctionMap
+       map:
+          mu_d: return max(0.1, -(Tau0 - sqrt(pow(Ts0,2)+pow(Td0,2)))/T_n);

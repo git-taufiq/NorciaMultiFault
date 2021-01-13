@@ -1,0 +1,11 @@
+!Switch
+[Tau0]: !EvalModel
+    parameters: [T_n, slip, Stress2Slip, mu_d]
+    model: !Switch
+        [T_n]: !Include common2all.yaml
+        [slip]: !Include faultslip.yaml
+        [Stress2Slip]: !Include Stress2Slip_familyB.yaml
+        [mu_d]: !Include mud_familyB.yaml
+    components: !FunctionMap
+       map:
+          Tau0: return -mu_d*T_n + 1000000.*Stress2Slip* slip;

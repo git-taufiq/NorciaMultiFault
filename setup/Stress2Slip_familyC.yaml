@@ -1,0 +1,13 @@
+!Switch
+[Stress2Slip]: !Any
+  components:
+    - !GroupFilter
+      groups: 155
+      components: !ConstantMap
+          map:
+            Stress2Slip: 3
+    - !GroupFilter
+      groups: 210
+      components: !ConstantMap
+          map:
+            Stress2Slip: 3.75

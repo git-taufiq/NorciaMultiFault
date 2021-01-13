@@ -1,0 +1,50 @@
+!Switch
+[strike_slip, dip_slip, slip]: !EvalModel
+    parameters: [strike_slip, dip_slip]
+    model: !Switch
+        [strike_slip, dip_slip]: !Any
+          components:
+            - !GroupFilter
+              groups: 155
+              components: !AffineMap
+                  matrix:
+                    ua: [0, -0.682, -0.73135625]
+                    ub: [1.0, 0.0,  0.0]
+                  translation:
+                    ua: 0.0
+                    ub: 17000
+                  components: !Any
+                    - !ASAGI
+                        file: modelloAAgeorefzeroshallowslip_SDSlip.nc
+                        parameters: [strike_slip, dip_slip]
+                        var: data
+                        interpolation: linear
+                    - !ConstantMap
+                      map:
+                        strike_slip: 0.0
+                        dip_slip:    0.0
+            - !GroupFilter
+              groups: 210
+              components: !AffineMap
+                  matrix:
+                    uy: [-0.60046, -0.545253571428571, -0.58471]
+                    uz: [0.638249, -0.767485, 0.059717]
+                  translation:
+                    uy: 230.393485985714
+                    uz: -3752.73649181
+                  components: !Any
+                    - !ASAGI
+                        file: modelloBBgeoref_SDSlip.nc
+                        parameters: [strike_slip, dip_slip]
+                        var: data
+                        interpolation: linear
+                    - !ConstantMap
+                      map:
+                        strike_slip: 0.0
+                        dip_slip:    0.0
+    components: !FunctionMap
+       map:
+          #Note the minus on strike_slip to acknowledge the different convention of SeisSol (T_s>0 means right-lateral)
+          strike_slip: return -strike_slip;
+          dip_slip: return dip_slip;
+          slip: return sqrt(pow(strike_slip,2)+pow(dip_slip,2));
