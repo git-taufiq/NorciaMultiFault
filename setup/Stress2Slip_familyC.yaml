@@ -5,9 +5,9 @@
       groups: 155
       components: !ConstantMap
           map:
-            Stress2Slip: 3
+            Stress2Slip: 5.5
     - !GroupFilter
       groups: 210
       components: !ConstantMap
           map:
-            Stress2Slip: 3.75
+            Stress2Slip: 6.5

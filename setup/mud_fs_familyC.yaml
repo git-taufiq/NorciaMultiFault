@@ -8,6 +8,6 @@
         [Stress2Slip]: !Include Stress2Slip_familyC.yaml
     components: !FunctionMap
        map:
-          mu_d: return max(0.1, -(Tau0 - Stress2Slip* max(0.5, slip) * 1000000.)/T_n);
+          mu_d: return max(0.1, -(Tau0 - Stress2Slip* max(0.4, slip) * 1000000.)/T_n);
 
 
