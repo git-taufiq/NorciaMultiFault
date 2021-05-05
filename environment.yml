@@ -2,7 +2,6 @@ name: binder-env
 channels:
   - conda-forge
 dependencies:
-  - python=3.6.5
   - numpy
   - matplotlib
   - netCDF4
@@ -10,4 +9,5 @@ dependencies:
   - pandas
   - cmcrameri
   - pyproj
-  - Pillow
+  - pillow
+  - img2pdf
