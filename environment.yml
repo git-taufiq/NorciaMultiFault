@@ -1,0 +1,10 @@
+name: binder-env
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - matplotlib
+  - netCDF4
+  - scipy
+  - pandas
+  - cmcrameri
