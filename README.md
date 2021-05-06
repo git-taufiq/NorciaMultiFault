@@ -1,4 +1,4 @@
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/git-taufiq/Norcia_MultiFault/HEAD)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/git-taufiq/NorciaMultiFault/HEAD)
 # Norcia_MultiFault
 
 
@@ -6,4 +6,4 @@ This repository contains files needed to prepare input for dynamic models and re
 
 To get started, click below link and open notebook file FAMILIES.ipynb:
 
-https://mybinder.org/v2/gh/git-taufiq/Norcia_MultiFault/HEAD
+https://mybinder.org/v2/gh/git-taufiq/NorciaMultiFault/HEAD
