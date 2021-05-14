@@ -5,4 +5,4 @@
         [T_n]: !Include common2all.yaml
     components: !FunctionMap
        map:
-          Tau0: return -0.5*0.92*T_n;
+          Tau0: return -0.5*0.96*T_n;
