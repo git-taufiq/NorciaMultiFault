@@ -12,7 +12,7 @@
             ub: 17000
           components: !Any
             - !ASAGI
-                file: fault155_fullA_Ts0Td0Pn0_ASAGI.nc
+                file: fault155_Ts0Td0Pn0.nc
                 parameters: [Ts0, Td0, Pn0]
                 var: data
                 interpolation: linear
@@ -31,7 +31,7 @@
             uz: -3752.73649181
           components: !Any
             - !ASAGI
-                file: fault210_fullA_Ts0Td0Pn0_ASAGI.nc
+                file: fault210_Ts0Td0Pn0.nc
                 parameters: [Ts0, Td0, Pn0]
                 var: data
                 interpolation: linear

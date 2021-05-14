@@ -4,10 +4,8 @@
     model: !Switch
         [slip]: !Include faultslip.yaml
         [T_n]: !Include common2all.yaml
-        [Tau0]: !Include Tau0_familyC.yaml
-        [Stress2Slip]: !Include Stress2Slip_familyC.yaml
+        [Tau0]: !Include Tau0.yaml
+        [Stress2Slip]: !Include Stress2Slip.yaml
     components: !FunctionMap
        map:
           mu_d: return max(0.1, -(Tau0 - Stress2Slip* max(0.4, slip) * 1000000.)/T_n);
-
-

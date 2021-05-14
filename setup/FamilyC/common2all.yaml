@@ -1,0 +1,57 @@
+!Switch
+[T_n]: !EvalModel
+    parameters: [rho, z]
+    model: !Switch
+        [rho]: !Include Norcia_material.yaml
+        [z]: !FunctionMap
+          map:
+            z: return z;
+    components: !FunctionMap
+       map:
+          T_n: return min(-1000000, (rho-1000)*9.8*z);
+
+[forced_rupture_time]: !FunctionMap
+  map:
+    #forced_rupture_time: |
+    #  r = sqrt(pow(x+4213.92719564, 2.0) + pow(y+9158.0236976,2.0)+ pow(z+9820.77805897, 2.0));
+    #  r_crit = 6000.0;
+    #  Vs = 4000.0;
+    #  if (r <= r_crit) {
+    #    return r/(0.7*Vs)+(0.081.0*r_crit/(0.7*Vs))*(1.0/(1.0-pow(r/r_crit, 2.0))-1.0);
+    #  }
+    #  return 1000000000.0;
+    forced_rupture_time: |
+      r = sqrt(pow(x+4213.92719564, 2.0) + pow(y+9158.0236976,2.0)+ pow(z+9820.77805897, 2.0));
+      r0 = sqrt(pow((x+4213.92719564)/0.75, 2.0) + pow((y+9158.0236976)/0.75,2.0)+ pow(z+9820.77805897, 2.0));
+      r_crit = 6000.0;
+      Vs = 4000.0;
+      if (r0 <= r_crit) {
+        return r/(0.7*Vs)+(0.081.0*r_crit/(0.7*Vs))*(1.0/(1.0-pow(r/r_crit, 2.0))-1.0);
+      }
+      return 1000000000.0;
+
+
+[cohesion]: !FunctionMap
+  map:
+    cohesion: |
+        return min(0,-2000000-min(0,z+2000)*600);
+
+[d_c]: !EvalModel
+    parameters: [factorDepth, slip]
+    model: !Switch
+        [slip]: !Include faultslip.yaml
+        [factorDepth]: !LayeredModel
+          map: !AffineMap
+            matrix:
+              za: [0.0, 0.0, 1.0]
+            translation:
+              za: 0.0
+          interpolation: lower
+          parameters: [factorDepth]
+          nodes:
+            -4500:  [0.3]
+            -14500: [0.1]
+    components: !FunctionMap
+       map:
+          d_c: |
+               return max(0.06, slip*factorDepth);

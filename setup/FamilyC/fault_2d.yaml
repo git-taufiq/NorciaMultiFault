@@ -1,0 +1,39 @@
+!Switch
+
+[mu_d]: !Include mud.yaml
+
+[mu_s]: !Include mus.yaml
+
+[T_s, T_d]: !EvalModel
+    parameters: [T_n, Tau0, rake, mu_d, mu_s, cohesion]
+    model: !Switch
+        [T_n]: !Include common2all.yaml
+        [Tau0]: !Include Tau0.yaml
+        [mu_d]: !Include mud.yaml
+        [mu_s]: !Include mus.yaml
+        [rake]: !Include rake.yaml
+        [cohesion]: !Include common2all.yaml
+    components: !FunctionMap
+       map:
+          T_s: |
+           T_s = cos(rake) * Tau0;
+           T_d = sin(rake) * Tau0;
+           strength = mu_s*abs(T_n) + abs(cohesion);
+           strength_m = max(0, strength-1000000.);
+           if (Tau0>strength_m) {
+              factor = strength_m/Tau0;
+              return T_s*factor;
+           }
+           return T_s;
+          T_d: |
+           T_s = cos(rake) * Tau0;
+           T_d = sin(rake) * Tau0;
+           strength = mu_s*abs(T_n) + abs(cohesion);
+           strength_m = max(0, strength-1000000.);
+           if (Tau0>strength_m) {
+              factor = strength_m/Tau0;
+              return T_d*factor;
+           }
+           return T_d;
+
+[T_n, forced_rupture_time, cohesion, d_c]: !Include common2all.yaml

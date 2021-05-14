@@ -13,10 +13,10 @@ BC_of = 1                                      ! enable absorbing boundaries
 /
 
 &DynamicRupture
-FL = 16                                        ! Friction law  
+FL = 16                                        ! Friction law
 !0: none, 16:LSW, 103: RS with strong velocity weakening
 !yaml file defining spatial dependance of fault properties
-ModelFileName = 'fault_2d_StCh_familyB.yaml'
+ModelFileName = 'fault_2d.yaml'
 
 
 !characteristic time of the forced nucleation
@@ -51,10 +51,10 @@ refinement = 1
 
 &SpongeLayer
 /
-            
+
 &MeshNml
 !MeshFile = 'Norcia_2fault_NNCIA'             ! Name of mesh file
-MeshFile = 'meshes/Norcia_2fault_NNCIA_reg_250m'             ! Name of mesh file
+MeshFile = '../meshes/Norcia_2fault_NNCIA_reg_250m'             ! Name of mesh file
 meshgenerator = 'PUML'                         ! Name of meshgenerator (Gambit3D-fast, Netcdf or PUML)
 /
 
@@ -86,7 +86,7 @@ xdmfWriterBackend = 'posix' ! (optional) The backend used in fault, wavefield,
 ! HDF5 support.
 
 nRecordPoints = 36                   ! number of Record points which are read from file
-RFileName = 'norcia_SMreceiversOK.dat'          ! Record Points in extra file
+RFileName = 'norcia_SMreceivers.dat'          ! Record Points in extra file
 
 ! (Optional) Synchronization point for receivers.
 !            If omitted, receivers are written at the end of the simulation.

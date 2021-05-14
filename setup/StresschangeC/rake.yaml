@@ -1,0 +1,14 @@
+!Switch
+[rake]: !EvalModel
+   parameters: [slip, strike_slip, dip_slip, rake_lowslip]
+   model: !Switch 
+      [slip, strike_slip, dip_slip]: !Include faultslip.yaml
+      [rake_lowslip]: !Include rake_lowslip.yaml
+   components: !FunctionMap
+      map: 
+        rake: |
+           if (slip<0.05) {
+              return rake_lowslip*3.1415/180;
+           } 
+           return atan2(dip_slip, strike_slip);
+

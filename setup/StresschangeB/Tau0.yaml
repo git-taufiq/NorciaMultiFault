@@ -3,7 +3,7 @@
     parameters: [T_n, Ts0, Td0]
     model: !Switch
         [T_n]: !Include common2all.yaml
-        [Ts0, Td0]: !Include Ts0Td0_fullA.yaml
+        [Ts0, Td0]: !Include Ts0Td0.yaml
     components: !FunctionMap
        map:
           Tau0: return -0.2*T_n + sqrt(pow(Ts0,2) + pow(Td0,2));

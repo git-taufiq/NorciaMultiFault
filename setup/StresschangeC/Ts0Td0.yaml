@@ -1,0 +1,41 @@
+!Switch
+[Ts0, Td0]: !Any
+  components:
+    - !GroupFilter
+      groups: 155
+      components: !AffineMap
+          matrix:
+            ua: [0, -0.682, -0.73135625]
+            ub: [1.0, 0.0,  0.0]
+          translation:
+            ua: 0.0
+            ub: 17000
+          components: !Any
+            - !ASAGI
+                file: fault155_Ts0Td0Pn0.nc
+                parameters: [Ts0, Td0, Pn0]
+                var: data
+                interpolation: linear
+            - !ConstantMap
+              map:
+                Ts0: 0.0
+                Td0: 0.0
+    - !GroupFilter
+      groups: 210
+      components: !AffineMap
+          matrix:
+            uy: [-0.60046, -0.545253571428571, -0.58471]
+            uz: [0.638249, -0.767485, 0.059717]
+          translation:
+            uy: 230.393485985714
+            uz: -3752.73649181
+          components: !Any
+            - !ASAGI
+                file: fault210_Ts0Td0Pn0.nc
+                parameters: [Ts0, Td0, Pn0]
+                var: data
+                interpolation: linear
+            - !ConstantMap
+              map:
+                Ts0: 0.0
+                Td0: 0.0
